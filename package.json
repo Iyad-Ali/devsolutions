@@ -12,7 +12,11 @@
   },
   "devDependencies": {},
   "scripts": {
+    "start": "node server/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "14.17.4"
   },
   "author": "Iyad and Omar",
   "license": "ISC"

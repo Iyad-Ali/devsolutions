@@ -22,6 +22,6 @@ app.use(publicRoutes);
 
 app.use(errorCont.getError404);
 
-mongoose.connect('mongodb+srv://DevSolutions:8ttM5kVi6BqOe2ol@cluster0.8t7rw.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://DevSolutions:8ttM5kVi6BqOe2ol@cluster0.8t7rw.mongodb.net/?retryWrites=true&w=majority')
 .then(result=> {app.listen(PORT);})
 .catch(err=>{console.log(err);});

@@ -1,0 +1,43 @@
+<%- include('includes/head.ejs') %>
+    <style>
+        .error-template {
+            padding: 40px 15px;
+            text-align: center;
+        }
+        
+        .error-actions {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .error-actions .btn {
+            margin-right: 10px;
+        }
+    </style>
+
+    <body class="sub_page">
+        <div class="hero_area">
+            <%- include('includes/nav.ejs') %>
+        </div>
+
+        <div class="container" style="height: 500px; padding-top: 25px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="error-template">
+                        <h1>
+                            Oops!</h1>
+                        <h2>
+                            404 Not Found</h2>
+                        <div class="error-details">
+                            Sorry, an error has occured, Requested page not found!
+                        </div>
+                        <div class="error-actions">
+                            <a href="/" class="btn btn-lg" style="background-color: #864ddf; color: white;">Take Me Home </a>
+                            <a href="/contactUs" class="btn btn-default btn-lg">Contact Support </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <%- include('includes/end.ejs') %>

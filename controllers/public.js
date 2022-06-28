@@ -32,3 +32,11 @@ exports.register = (req, res, next) => {
         path: "/register"
     });
 };
+
+
+exports.service = (req, res, next) => {
+    res.render('service', {
+        pageTitle: "DevSolutions || Manage services",
+        path: "/service"
+    });
+};

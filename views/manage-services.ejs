@@ -1,0 +1,260 @@
+<%- include('includes/head.ejs') %>
+
+<style>
+    .layout_padding {
+    padding: 100px ;
+}
+    #myInput {
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #9852f2;
+            margin-bottom: 12px;
+            margin-top: 12px;
+            text-align: center;
+        }
+        
+        #myTable {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #ddd;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        #myTable th,
+        #myTable td {
+            text-align: left;
+            padding: 10px;
+        }
+        
+        #myTable tr {
+            border-bottom: 1px solid #ddd;
+        }
+        
+        #myTable tr.header,
+        #myTable tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .bg-dark {
+            --bs-bg-opacity: 1;
+            background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+        }
+        
+        .py-5 {
+            padding-top: 3rem !important;
+            padding-bottom: 3rem !important;
+        }
+        
+        
+        
+        @media (min-width: 576px) {
+            .container-sm,
+            .container {
+                max-width: 540px;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .container-md,
+            .container-sm,
+            .container {
+                max-width: 720px;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .container-lg,
+            .container-md,
+            .container-sm,
+            .container {
+                max-width: 960px;
+            }
+        }
+        
+        @media (min-width: 1200px) {
+            .container-xl,
+            .container-lg,
+            .container-md,
+            .container-sm,
+            .container {
+                max-width: 1140px;
+            }
+        }
+        
+        @media (min-width: 1400px) {
+            .container-xxl,
+            .container-xl,
+            .container-lg,
+            .container-md,
+            .container-sm,
+            .container {
+                max-width: 1320px;
+            }
+        }
+        
+        .px-4 {
+            padding-right: 1.5rem !important;
+            padding-left: 1.5rem !important;
+        }
+        
+        .px-lg-5 {
+            padding-right: 3rem !important;
+            padding-left: 3rem !important;
+        }
+        
+        .my-5 {
+            margin-top: 3rem !important;
+            margin-bottom: 3rem !important;
+        }
+        
+        .text-center {
+            text-align: center !important;
+        }
+        
+        .text-white {
+            --bs-text-opacity: 1;
+            color: rgba(var(--bs-white-rgb), var(--bs-text-opacity)) !important;
+        }
+        
+        .display-4 {
+            font-size: calc(1.475rem + 2.7vw);
+            font-weight: 300;
+            line-height: 1.2;
+        }
+        
+        @media (min-width: 1200px) {
+            .display-4 {
+                font-size: 3.5rem;
+            }
+        }
+        
+        .fw-bolder {
+            font-weight: bolder !important;
+        }
+        
+        .edit-btn {
+            margin-left: 5%;
+            color: #9852f2;
+        }
+        
+        .edit-btn:hover {
+            color: #ffca56;
+        }
+        
+        .delete-btn {
+            margin-left: 5px;
+        }
+        
+</style>
+
+    <body class="sub_page">
+        <div class="hero_area">
+            <!-- header section strats -->
+            <%- include('includes/nav.ejs') %>
+                <!-- end header section -->
+        </div>
+
+        <!-- contact section -->
+        <section class="contact_section layout_padding">
+            <div class="container contact_heading">
+                <h2>
+                    Manage Services
+                </h2>
+                
+            </div>
+            <div class="container">
+                <form method="post" , action="/addservice">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputName4">Name</label>
+                            <input name="name" type="text" class="form-control" id="inputName4" />
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail4">Price</label>
+                            <input name="price" type="number" class="form-control" id="inputEmail4" />
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="inputMessage">Description</label>
+                        <input name="description" type="text" class="form-control" id="inputMessage" placeholder="" />
+                    </div>
+
+                    
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="">ADD</button>
+            </div>
+            </form>
+
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Enter The Service Name" title="Type in a name">
+            
+            <table id="myTable">
+                <tr class="header">
+                    <th style="width:20%;">Service</th>
+                    <th style="width:20%;">Description</th>
+                    <th style="width:20%;">Price</th>
+                    <th style="width:20%;">Actions</th>
+                </tr>
+                <tr>
+                    <% if (services.length> 0) { %>
+                        <% for (let service of services) { %>
+                            <td>
+                                <%= service.name %>
+                            </td>
+                            <td>
+                                <%= service.description %>
+                            </td>
+                            <td>
+                                <%= service.price %>
+                            </td>
+                            <td>
+                                <div class="card__actions">
+                                    <form action="/deleteservice" method="POST">
+                                        <input type="hidden" value="<%= service.name%>" name="name">
+                                        <button class="btn" type="submit">Delete</button>
+                                    </form>
+            
+                                </div>
+            
+                            </td>
+                </tr>
+                <% } %>
+                    <% } else { %>
+                        <td>No Services Found!</td>
+                        <% } %>
+            </table>
+            
+            <script>
+                function myFunction() {
+                    var input, filter, table, tr, td, i, txtValue;
+                    input = document.getElementById("myInput");
+                    filter = input.value.toUpperCase();
+                    table = document.getElementById("myTable");
+                    tr = table.getElementsByTagName("tr");
+                    for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[0];
+                        if (td) {
+                            txtValue = td.textContent || td.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                            } else {
+                                tr[i].style.display = "none";
+                            }
+                        }
+                    }
+                }
+            </script>
+
+        </section>
+
+
+        <!-- end contact section -->
+
+
+        <%- include('includes/end.ejs') %>

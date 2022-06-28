@@ -8,7 +8,7 @@ const serviceSchema = new schema({
         required: true
     },
     price: {
-        type: int64,
+        type: String,
         required: true
     },
     description: {

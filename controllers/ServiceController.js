@@ -2,6 +2,7 @@ const Service = require('../models/ServiceModel');
 
 
 exports.AddService = (req, res, next) => {
+    console.log(req.body);
     Service.findOne({ name: req.body.name })
         .then((service) => {
             if (service) {
@@ -11,7 +12,7 @@ exports.AddService = (req, res, next) => {
                     .save()
                     .then(result => {
                         console.log('service updated!');
-                        res.redirect('/');
+                        res.redirect('/manage-services');
                     })
                     .catch(err => {
                         console.log(err);
@@ -23,7 +24,10 @@ exports.AddService = (req, res, next) => {
                         price: req.body.price,
                         description: req.body.description
                     })
-                    .then((user) => { res.status(201).json(user) })
+                    .then(result => {
+                        console.log('service added!');
+                        res.redirect('/manage-services');
+                    })
                     .catch((error) => {
                         console.error(error);
                         res.status(500).send('Error: ' + error);
@@ -43,7 +47,8 @@ exports.DeleteService = (req, res, next) => {
             if (!service) {
                 res.status(400).send(req.body.name + ' was not found');
             } else {
-                res.status(200).send(req.body.name + ' was deleted.');
+                console.log('service deleted!');
+                res.redirect('/manage-services');
             }
         })
         .catch((err) => {
@@ -51,3 +56,15 @@ exports.DeleteService = (req, res, next) => {
             res.status(500).send('Error: ' + err);
         });
 }
+
+exports.getServices = (req, res, next) => {
+    Service.find({})
+        .then(services => {
+            res.render('manage-services', {
+                services: services,
+                pageTitle: 'Manage Services',
+                path: '/manage-services'
+            });
+        })
+        .catch(err => console.log(err));
+};

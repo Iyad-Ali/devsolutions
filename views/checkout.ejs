@@ -1,0 +1,38 @@
+<%- include('includes/head.ejs') %>
+
+    <body class="sub_page">
+        <div class="hero_area">
+            <!-- header section strats -->
+            <%- include('includes/nav.ejs') %>
+                <!-- end header section -->
+        </div>
+
+        <!-- contact section -->
+        <section class="contact_section layout_padding">
+            <div class="container contact_heading">
+                <h2>
+                    Confirm this Amount: <%- amount %>$
+                </h2>
+
+            <div class="d-flex justify-content-center">
+                <button id="order-btn" class="">Confirm and Pay</button>
+                <script src="https://js.stripe.com/v3/"></script>
+                <script>
+                    var stripe = Stripe('pk_test_51LG27vGL9EddvwtT4RJpdE1HOo9wCWOncwo24Yxw7avdxOhj3itXSaPDoq39IgwXgwkEwRcIrDsX2vGDgHUaVnfL00g43eczHB');
+                    var orderBtn = document.getElementById('order-btn');
+                    orderBtn.addEventListener('click', function () {
+                        stripe.redirectToCheckout({
+                            sessionId: '<%= sessionId %>'
+                        });
+                    });
+                </script>
+            </div>
+            </form>
+
+        </section>
+
+
+        <!-- end contact section -->
+
+
+        <%- include('includes/end.ejs') %>

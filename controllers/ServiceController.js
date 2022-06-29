@@ -63,7 +63,9 @@ exports.getServices = (req, res, next) => {
             res.render('manage-services', {
                 services: services,
                 pageTitle: 'Manage Services',
-                path: '/manage-services'
+                path: '/manage-services',
+                isAuthenticated: req.session.isLoggedIn,
+                user: req.session.user
             });
         })
         .catch(err => console.log(err));

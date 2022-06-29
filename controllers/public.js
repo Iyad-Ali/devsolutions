@@ -41,3 +41,12 @@ exports.register = (req, res, next) => {
         isAuthenticated: false
     });
 };
+
+exports.payment = (req, res, next) => {
+    res.render('payment', {
+        pageTitle: "DevSolutions || payment",
+        path: "/payment",
+        isAuthenticated: req.session.isLoggedIn,
+        user: req.session.user
+    });
+};

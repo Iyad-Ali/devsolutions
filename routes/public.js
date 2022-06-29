@@ -3,9 +3,13 @@ const path = require('path');
 const express = require('express');
 
 const rootDir = require('../util/path');
+
 const publicController = require('../controllers/public');
-const contactController = require('../controllers/ContactController');
-const userController = require('../controllers/UserController');
+
+const adminController = require('../controllers/admin');
+
+const isAuth = require('../middleware/is-auth');
+
 const serviceController = require('../controllers/ServiceController');
 
 
@@ -18,17 +22,21 @@ router.get('/', publicController.home);
 
 router.get('/aboutUs', publicController.aboutUs);
 
-router.get('/contactUs', publicController.contactUs);
+router.get('/contactUs', isAuth, publicController.contactUs);
 
-router.post('/postcontactMessage', contactController.postContactUs);
+router.post('/postcontactMessage', isAuth, adminController.postContactUs);
 
-router.get('/services', publicController.services);
+router.get('/services', isAuth, publicController.services);
 
 router.get('/register', publicController.register);
 
-router.get('/manage-services', serviceController.getServices);
+router.post('/postNewUser', adminController.postNewUser);
 
-router.post('/postNewUser', userController.postNewUser);
+router.post('/postLogin', adminController.postLogin);
+
+router.post('/logout', adminController.logout);
+
+router.get('/manage-services', serviceController.getServices);
 
 router.post('/addservice', serviceController.AddService);
 

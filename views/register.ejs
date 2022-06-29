@@ -11,25 +11,25 @@
         <section class="register_section">
             <div class="register_main">
                 <input type="checkbox" id="chk" aria-hidden="true">
-            
+
                 <div class="login">
-                    <form>
-                        <label class= 'register'for="chk" aria-hidden="true">LOGIN</label>
-                        <input class= 'register' type="email" name="email" placeholder="Email" required="">
-                        <input class= 'register' type="password" name="pswd" placeholder="Password" required="">
-                        <button class= 'register'>Login</button>
+                    <form action="/postLogin" method="POST">
+                        <label class='register' for="chk" aria-hidden="true">LOGIN</label>
+                        <input class='register' type="email" name="email" placeholder="Email" required="">
+                        <input class='register' type="password" name="password" placeholder="Password" required="">
+                        <button class='register'>Login</button>
                     </form>
 
                     <a href=""> Forgot Password ?</a>
                 </div>
-            
+
                 <div class="signup">
-                    <form method="post" action="/postNewUser">
-                        <label class= 'register' for="chk" aria-hidden="true">SIGN UP</label>
-                        <input class='register' type="text" name="username" placeholder="User name" required="">
-                        <input class= 'register' type="email" name="email" placeholder="Email" required="">
-                        <input class= 'register' type="password" name="password" placeholder="Password" required="">
-                        <button class= 'register'>Sign Up</button>
+                    <form action="/postNewUser" method="POST">
+                        <label class='register' for="chk" aria-hidden="true">SIGN UP</label>
+                        <input class='register' type="text" name="username" placeholder="Username" required="">
+                        <input class='register' type="email" name="email" placeholder="Email" required="">
+                        <input class='register' type="password" name="password" placeholder="Password" required="">
+                        <button class='register'>Sign Up</button>
                     </form>
                 </div>
             </div>
